@@ -40,7 +40,7 @@ password:yup
 .min(6, "minimum 6 character"),
 })
 
-const Loginform = () => {
+const Login = () => {
   const {
     control,
     handleSubmit,
@@ -92,4 +92,4 @@ const Loginform = () => {
   );
 };
 
-export default Loginform;
+export default Login;
