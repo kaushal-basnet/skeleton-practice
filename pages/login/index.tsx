@@ -7,8 +7,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Link from "next/link";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../utils/firebase";
+import Router from "next/router";
 
 const Buttonwrapper = styled.div`
   background: #bdd3e7;
@@ -88,7 +89,7 @@ const Login = () => {
   const onSubmit = (data: any) => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
-        // Signed in
+        Router.push("/dashboard");
         const user = userCredential.user;
         // ...
         console.log(user);
@@ -97,10 +98,13 @@ const Login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         // console.log(errorCode, errorMessage);
+        if (errorCode === "auth/user-not-found") {
+          message.error("Please enter the valid Email");
+        }
         if (errorCode === "auth/wrong-password") {
-          message.error("This is an error message");
+          message.error("Please enter the valid Password");
         } else if (errorCode === "auth/too-many-requests") {
-          message.error("plese wait");
+          message.error("Too many attempts");
         }
       });
   };

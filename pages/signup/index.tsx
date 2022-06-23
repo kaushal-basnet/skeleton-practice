@@ -1,6 +1,6 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Button, Input } from "antd";
+import { Button, Input, message } from "antd";
 import Emailinput from "../input";
 import { styled } from "linaria/lib/react";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,7 +9,7 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import Router from "next/router";
 import app, { auth } from "../../utils/firebase";
-import {  createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Buttonwrapper = styled.div`
   background: #bdd3e7;
@@ -68,12 +68,17 @@ const Signup = () => {
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         // Signed in
+        Router.push("/dashboard");
         const user = userCredential.user;
-        console.log(user);
+        // console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        if (errorCode === "auth/email-already-in-use") {
+          message.error("Email already in use");
+        }
       });
   };
   return (
