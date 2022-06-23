@@ -19,8 +19,11 @@ const FormWrapper = styled.div`
   background-color: #bdd3e7;
   justify-content: center;
   align-items: center;
+
   & form {
-    /* width: 70%; */
+    @media screen and (max-width: 768px) {
+      width: 90%;
+    }
   }
   .formFooter {
     display: flex;

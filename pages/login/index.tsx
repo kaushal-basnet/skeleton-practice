@@ -21,6 +21,9 @@ const Register = styled.div`
   padding: 20px;
   & Button {
     margin-top: 200px;
+    @media (max-width: 768px) {
+      margin-top: 20px;
+    }
   }
 `;
 const FormWrapper = styled.div`
@@ -28,12 +31,19 @@ const FormWrapper = styled.div`
   width: calc(100% / 2);
 
   display: flex;
-  padding-top: 25px;
+  /* padding-top: 25px; */
   background-color: #bdd3e7;
   justify-content: center;
   align-items: center;
+  @media (max-width: 768px) {
+    padding-top: 20px;
+    align-items: flex-start;
+  }
   & form {
     width: 70%;
+    @media (max-width: 768px) {
+      width: 90%;
+    }
   }
   .formFooter {
     display: flex;

@@ -15,6 +15,12 @@ const Rightside = styled.div`
   width: 10%;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 870px) {
+    width: 20%;
+  }
+  @media screen and (max-width: 470px) {
+    width: 40%;
+  }
   & p {
     cursor: pointer;
     font-size: 600;
