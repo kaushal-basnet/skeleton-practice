@@ -1,20 +1,27 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Button, Input } from "antd";
+import { Button, Input, message } from "antd";
 import Emailinput from "../input";
 import { styled } from "linaria/lib/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Link from "next/link";
 import { ArrowLeftOutlined } from "@ant-design/icons";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../utils/firebase";
 
 const Buttonwrapper = styled.div`
   background: #bdd3e7;
   width: calc(100% / 2);
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 const Container = styled.div`
   display: flex;
-  /* flex-direction: column; */
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 const Register = styled.div`
   flex: 1;
@@ -36,8 +43,10 @@ const FormWrapper = styled.div`
   justify-content: center;
   align-items: center;
   @media (max-width: 768px) {
+    height: 100%;
+    width: 100%;
     padding-top: 20px;
-    align-items: flex-start;
+    /* align-items: flex-start; */
   }
   & form {
     width: 70%;
@@ -77,7 +86,23 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
   const onSubmit = (data: any) => {
-    console.log(data);
+    signInWithEmailAndPassword(auth, data.email, data.password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // console.log(errorCode, errorMessage);
+        if (errorCode === "auth/wrong-password") {
+          message.error("This is an error message");
+        } else if (errorCode === "auth/too-many-requests") {
+          message.error("plese wait");
+        }
+      });
   };
   return (
     <>
