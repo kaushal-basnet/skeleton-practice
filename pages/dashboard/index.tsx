@@ -6,6 +6,8 @@ import Router from "next/router";
 import Footer from "../footer";
 import { styled } from "linaria/lib/react";
 import { Context } from "../../utils/AuthContext";
+import PrivateHoc from "../../utils/PrivateHoc";
+import RestrictedHoc from "../../utils/RestrictedHoc";
 const Title = styled.div`
   background-color: #bdd3e7;
   display: flex;
@@ -20,10 +22,11 @@ const Main = styled.div`
 `;
 
 const Dashboard = () => {
-  const { user } = useContext(Context);
+  const { setUser } = useContext(Context);
   const submithandler = () => {
     signOut(auth)
       .then(() => {
+        setUser(null);
         Router.push("/login");
       })
       .catch((error) => {
@@ -41,8 +44,8 @@ const Dashboard = () => {
       <Main>
         <div className="site-card-border-less-wrapper">
           <Card title="User" bordered={false} style={{ width: 300 }}>
-            <p>Email:{user.UserImpl.email}</p>
-            <p>Uid:{user.UserImpl.uid}</p>
+            {/* <p>Email:{info.email}</p>
+            <p>Uid:{info.uid}</p> */}
           </Card>
         </div>
       </Main>
@@ -51,4 +54,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default PrivateHoc(Dashboard);

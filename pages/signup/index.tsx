@@ -10,6 +10,7 @@ import Link from "next/link";
 import Router from "next/router";
 import app, { auth } from "../../utils/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import RestrictedHoc from "../../utils/RestrictedHoc";
 
 const Buttonwrapper = styled.div`
   background: #bdd3e7;
@@ -142,4 +143,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default RestrictedHoc(Signup);

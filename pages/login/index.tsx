@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Button, Input, message } from "antd";
+import { Button, Divider, Input, message } from "antd";
 import Emailinput from "../input";
 import { styled } from "linaria/lib/react";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,6 +10,9 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import Router from "next/router";
+import { Context } from "../../utils/AuthContext";
+import RestrictedHoc from "../../utils/RestrictedHoc";
+import PrivateHoc from "../../utils/PrivateHoc";
 
 const Buttonwrapper = styled.div`
   background: #bdd3e7;
@@ -20,6 +23,7 @@ const Buttonwrapper = styled.div`
 `;
 const Container = styled.div`
   display: flex;
+  height: 95vh;
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -28,14 +32,12 @@ const Register = styled.div`
   flex: 1;
   padding: 20px;
   & Button {
-    margin-top: 200px;
     @media (max-width: 768px) {
       margin-top: 20px;
     }
   }
 `;
 const FormWrapper = styled.div`
-  height: 100vh;
   width: calc(100% / 2);
 
   display: flex;
@@ -79,6 +81,7 @@ const schema = yup.object({
 });
 
 const Login = () => {
+  const { setUser } = useContext(Context);
   const {
     control,
     handleSubmit,
@@ -91,8 +94,7 @@ const Login = () => {
       .then((userCredential) => {
         Router.push("/dashboard");
         const user = userCredential.user;
-        // ...
-        console.log(user);
+        setUser(user);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -157,7 +159,7 @@ const Login = () => {
         </FormWrapper>
         <Register>
           <div>
-            <h5>Do not have account?</h5>
+            <h3>Do not have account?</h3>
             <p>
               Register with us for a faster checkout, to track the status of
               your order and more.
@@ -166,10 +168,21 @@ const Login = () => {
           <Link href="/signup">
             <Button block>SignUp</Button>
           </Link>
+          <Divider>OR</Divider>
+          <div>
+            <Button style={{ width: "100%" }}>
+              <img
+                src="/img/google.png"
+                alt="google"
+                style={{ height: "25px" }}
+              />
+              Login With Google
+            </Button>
+          </div>
         </Register>
       </Container>
     </>
   );
 };
 
-export default Login;
+export default RestrictedHoc(Login);
