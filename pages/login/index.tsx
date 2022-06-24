@@ -7,12 +7,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Link from "next/link";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import Router from "next/router";
 import { Context } from "../../utils/AuthContext";
 import RestrictedHoc from "../../utils/RestrictedHoc";
-import PrivateHoc from "../../utils/PrivateHoc";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Buttonwrapper = styled.div`
   background: #bdd3e7;
@@ -89,6 +89,7 @@ const Login = () => {
   } = useForm<any>({
     resolver: yupResolver(schema),
   });
+
   const onSubmit = (data: any) => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
@@ -108,6 +109,24 @@ const Login = () => {
         } else if (errorCode === "auth/too-many-requests") {
           message.error("Too many attempts");
         }
+      });
+  };
+  const onGoogleClick = () => {
+    const provider = new GoogleAuthProvider();
+    provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        setUser(user);
+
+        // ...
+      })
+      .catch((error) => {
+        message.error("please try again");
       });
   };
   return (
@@ -170,7 +189,7 @@ const Login = () => {
           </Link>
           <Divider>OR</Divider>
           <div>
-            <Button style={{ width: "100%" }}>
+            <Button style={{ width: "100%" }} onClick={onGoogleClick}>
               <img
                 src="/img/google.png"
                 alt="google"

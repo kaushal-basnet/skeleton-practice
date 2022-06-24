@@ -8,7 +8,7 @@ import * as yup from "yup";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import Router from "next/router";
-import app, { auth } from "../../utils/firebase";
+import { auth } from "../../utils/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import RestrictedHoc from "../../utils/RestrictedHoc";
 
@@ -64,8 +64,7 @@ const Signup = () => {
     resolver: yupResolver(schema),
   });
   const onSubmit = (data: any) => {
-    console.log(data);
-    // const auth = getAuth();
+    // console.log(data);
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         // Signed in

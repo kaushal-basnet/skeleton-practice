@@ -7,7 +7,6 @@ import Footer from "../footer";
 import { styled } from "linaria/lib/react";
 import { Context } from "../../utils/AuthContext";
 import PrivateHoc from "../../utils/PrivateHoc";
-import RestrictedHoc from "../../utils/RestrictedHoc";
 const Title = styled.div`
   background-color: #bdd3e7;
   display: flex;
@@ -22,7 +21,7 @@ const Main = styled.div`
 `;
 
 const Dashboard = () => {
-  const { setUser } = useContext(Context);
+  const { user, setUser } = useContext(Context);
   const submithandler = () => {
     signOut(auth)
       .then(() => {
@@ -43,9 +42,13 @@ const Dashboard = () => {
       </Button>
       <Main>
         <div className="site-card-border-less-wrapper">
-          <Card title="User" bordered={false} style={{ width: 300 }}>
-            {/* <p>Email:{info.email}</p>
-            <p>Uid:{info.uid}</p> */}
+          <Card title="User" style={{ width: 500 }}>
+            <p>
+              <b>Email:</b> {user?.email}
+            </p>
+            <p>
+              <b>Uid:</b> {user?.uid}
+            </p>
           </Card>
         </div>
       </Main>

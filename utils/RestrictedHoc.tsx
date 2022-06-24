@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Context } from "./AuthContext";
 import { useRouter } from "next/router";
 import { Spin } from "antd";
 
-//Resticted: Restricted to go in public location
+//Resticted: Restricted to go in signIn without signOut
 
 const RestrictedHoc = (AuthComponent) => {
   function ProtectedComponent({ children }) {
@@ -35,24 +35,7 @@ const RestrictedHoc = (AuthComponent) => {
         />
       );
     }
-    return (
-      <>
-        <>
-          {/* <Spin
-            spinning={loading}
-            tip="Loading..."
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: "500px",
-              fontSize: "30px",
-            }}
-          /> */}
-        </>
-        {children}
-      </>
-    );
+    return <>{children}</>;
   }
 
   return class Higher extends React.Component {

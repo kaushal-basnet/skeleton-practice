@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "./AuthContext";
 import Router from "next/router";
 import { Spin } from "antd";
-//private:not allowed to go in private location
+//private: not allowed to go in private location without signIn
 const PrivateHoc = (AuthComponent) => {
   function PrivateComponent({ children }) {
     const { user, loading, setLoading } = useContext(Context);
@@ -31,24 +31,7 @@ const PrivateHoc = (AuthComponent) => {
         />
       );
     }
-    return (
-      <>
-        <>
-          {/* <Spin
-            spinning={loading}
-            tip="Loading..."
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: "500px",
-              fontSize: "30px",
-            }}
-          /> */}
-        </>
-        {children}
-      </>
-    );
+    return <>{children}</>;
   }
 
   return class Higher extends React.Component {

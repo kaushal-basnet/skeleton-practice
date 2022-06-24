@@ -18,7 +18,7 @@ export const Provider = (props: any) => {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log("context", user);
+      // console.log("context", user);
       setUser(user);
       const uid = user.uid;
     }
