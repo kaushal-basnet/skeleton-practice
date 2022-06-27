@@ -7,7 +7,7 @@ const PrivateHoc = (AuthComponent) => {
   function PrivateComponent({ children }) {
     const { user, loading, setLoading } = useContext(Context);
     useEffect(() => {
-      console.log(user, "private");
+      // console.log(user, "private");
       if (user === null) {
         Router.push("/login");
         return;

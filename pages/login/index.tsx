@@ -111,6 +111,8 @@ const Login = () => {
         }
       });
   };
+
+  // Login with Google
   const onGoogleClick = () => {
     const provider = new GoogleAuthProvider();
     provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
@@ -129,6 +131,7 @@ const Login = () => {
         message.error("please try again");
       });
   };
+
   return (
     <>
       <Buttonwrapper>
@@ -164,11 +167,7 @@ const Login = () => {
               )}
             />
             <div className="formFooter">
-              <Button
-                className="login-form-button"
-                //   loading={mutation.isLoading}
-                htmlType="submit"
-              >
+              <Button className="login-form-button" htmlType="submit">
                 Login
               </Button>
 
@@ -190,6 +189,7 @@ const Login = () => {
           <Divider>OR</Divider>
           <div>
             <Button style={{ width: "100%" }} onClick={onGoogleClick}>
+              {/* eslint-disable @next/next/no-img-element  */}
               <img
                 src="/img/google.png"
                 alt="google"

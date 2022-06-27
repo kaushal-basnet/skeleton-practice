@@ -11,7 +11,7 @@ const RestrictedHoc = (AuthComponent) => {
     const { user, loading, setLoading } = useContext(Context);
 
     useEffect(() => {
-      console.log(user, "restricted");
+      // console.log(user, "restricted");
       if (user !== null) {
         router.push("/dashboard");
       }
