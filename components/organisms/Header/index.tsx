@@ -3,19 +3,12 @@ import { Badge } from "antd";
 import { styled } from "linaria/lib/react";
 import Link from "next/link";
 import React from "react";
-const Container = styled.div`
-  background-color: #f4f4f4;
-  height: 100%;
-`;
-const Main = styled.div`
-  height: 80px;
-  background-color: #ffffff;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
-`;
+
 const HeaderItem = styled.div`
   padding: 24px 154px;
   display: flex;
   justify-content: space-between;
+
 `;
 const HeaderItemLeft = styled.div`
   display: flex;
@@ -74,70 +67,59 @@ const HeaderItemRight = styled.div`
 const Header = () => {
   return (
     <>
-      <Container>
-        <Main>
-          <HeaderItem>
-            <HeaderItemLeft>
-              <div>
-                <a href="/">
-                  <img src="/img/logo.svg" alt="logo" />
-                </a>
-              </div>
+      <HeaderItem>
+        <HeaderItemLeft>
+          <div>
+            <a href="/">
+              <img src="/img/logo.svg" alt="logo" />
+            </a>
+          </div>
 
-              <NavLink>
-                <a href="/">求人検索</a>
+          <NavLink>
+            <a href="/">求人検索</a>
 
-                <a href="/">エントリー</a>
+            <a href="/">エントリー</a>
 
-                <a href="/">リファラル管理</a>
+            <a href="/">リファラル管理</a>
 
-                <a href="/">スカウト</a>
+            <a href="/">スカウト</a>
 
-                <a href="/">会員サポート</a>
-              </NavLink>
-            </HeaderItemLeft>
-            <HeaderItemRight>
-              <NavLink>
-                <a href="/">
-                  <span>
-                    <HeartFilled className="icon" />
-                  </span>
-                </a>
+            <a href="/">会員サポート</a>
+          </NavLink>
+        </HeaderItemLeft>
+        <HeaderItemRight>
+          <NavLink>
+            <a href="/">
+              <span>
+                <HeartFilled className="icon" />
+              </span>
+            </a>
 
-                <a href="/">
-                  <Badge count={1}>
-                    <span>
-                      <MessageFilled className="icon" />
-                    </span>
-                  </Badge>
-                </a>
-                <div className="user">
-                  <div className="goldmedal">
-                    <a href="/">山田 太郎</a>
-                    <div className="userinfo">
-                      <img src="/img/gold.png" alt="pp" />
-                      <a
-                        href="/"
-                        style={{ color: "#B69B12", fontWeight: "600" }}
-                      >
-                        ゴールド
-                      </a>
-                    </div>
-                  </div>
-
-                  <a href="/">
-                    <img
-                      src="/img/mustang.jpg"
-                      alt="pp"
-                      className="profilePic"
-                    />
+            <a href="/">
+              <Badge count={1}>
+                <span>
+                  <MessageFilled className="icon" />
+                </span>
+              </Badge>
+            </a>
+            <div className="user">
+              <div className="goldmedal">
+                <a href="/">山田 太郎</a>
+                <div className="userinfo">
+                  <img src="/img/gold.png" alt="pp" />
+                  <a href="/" style={{ color: "#B69B12", fontWeight: "600" }}>
+                    ゴールド
                   </a>
                 </div>
-              </NavLink>
-            </HeaderItemRight>
-          </HeaderItem>
-        </Main>
-      </Container>
+              </div>
+
+              <a href="/">
+                <img src="/img/mustang.jpg" alt="pp" className="profilePic" />
+              </a>
+            </div>
+          </NavLink>
+        </HeaderItemRight>
+      </HeaderItem>
     </>
   );
 };
