@@ -19,6 +19,7 @@ const Home: NextPage = () => {
     <>
       <Header />
       <Navbar />
+      
       <Image src="/img/wesionary.png" alt="Picture of company" />
       <Footer />
     </>

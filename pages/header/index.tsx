@@ -10,7 +10,26 @@ const Container = styled.div`
     padding: 15px;
   }
 `;
-const Leftside = styled.div``;
+const Leftside = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  & .sidebizz {
+    margin-top: 15px;
+    cursor: pointer;
+
+    & img {
+      height: 25px;
+    }
+    & p {
+      padding-left: 40px;
+      color: crimson;
+    }
+  }
+  & h2 {
+    font-size: 30px;
+  }
+`;
 const Rightside = styled.div`
   width: 10%;
   display: flex;
@@ -32,7 +51,13 @@ const Header = () => {
       <Container>
         <header>
           <Leftside>
-            <h1>WESIONARY</h1>
+            <h2>WESIONARY</h2>
+            <div className="sidebizz">
+              <Link href="/sidebizz">
+                <img src="/img/logo.svg" alt="sidebizz" />
+              </Link>
+              <p>ClickMe</p>
+            </div>
           </Leftside>
           <Rightside>
             <Link href="/login">Login</Link>
