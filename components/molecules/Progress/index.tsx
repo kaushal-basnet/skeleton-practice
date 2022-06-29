@@ -1,8 +1,12 @@
 import { styled } from "linaria/lib/react";
 import { ProgressCard } from "../../atoms";
 
-const Main = styled.div``;
-const Text = styled.h1`
+const Container = styled.div`
+  background-color: #ffffff;
+  width: 776px;
+  padding: 16px;
+`;
+const Text = styled.h2`
   margin-bottom: 13px;
   font-weight: 700;
   font-size: 16px;
@@ -27,7 +31,7 @@ const Progress = () => {
   ];
   return (
     <>
-      <Main>
+      <Container>
         <Text>進捗状況</Text>
         {DATA.map((progressData, index) => (
           <ProgressCard
@@ -38,7 +42,7 @@ const Progress = () => {
             numberOfDeals={progressData.numberOfDeals}
           />
         ))}
-      </Main>
+      </Container>
     </>
   );
 };
