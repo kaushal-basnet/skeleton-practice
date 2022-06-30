@@ -1,4 +1,9 @@
-import { HeartFilled, MessageFilled } from "@ant-design/icons";
+import {
+  HeartFilled,
+  MenuOutlined,
+  MessageFilled,
+  SearchOutlined,
+} from "@ant-design/icons";
 import { Badge } from "antd";
 import { styled } from "linaria/lib/react";
 import Link from "next/link";
@@ -8,7 +13,16 @@ const HeaderItem = styled.div`
   padding: 24px 154px;
   display: flex;
   justify-content: space-between;
-
+  @media (max-width: 1270px) {
+    padding: 24px 50px;
+  }
+  @media (min-width: 768px) and (max-width: 1070px) {
+    padding: 24px 15px;
+  }
+  @media (max-width: 768px) {
+    padding: 17px 20px;
+    /* gap: 20px; */
+  }
 `;
 const HeaderItemLeft = styled.div`
   display: flex;
@@ -16,24 +30,60 @@ const HeaderItemLeft = styled.div`
 
   & img {
     margin-right: 36px;
+    @media (min-width: 768px) and (max-width: 1024px) {
+      width: 120px;
+      margin-right: 16px;
+    }
+  }
+  & .leftNavlink {
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 `;
 const NavLink = styled.div`
   display: flex;
   gap: 24px;
   align-items: center;
-
+  @media (min-width: 768px) and (max-width: 1024px) {
+    gap: 18px;
+  }
+  & .mobileDisable {
+    @media (max-width: 768px) {
+      display: none !important;
+    }
+  }
   & a {
     color: black;
     font-size: 16px;
     &:hover {
       color: #264270;
     }
+    @media (min-width: 768px) and (max-width: 1024px) {
+      font-size: 12px;
+    }
+  }
+  & .ant-scroll-number {
+    @media (min-width: 768px) and (max-width: 1024px) {
+      font-size: 12px;
+      height: 15px;
+      min-width: 15px;
+      width: 16px;
+    }
+  }
+  & .mobileEnable {
+    display: none;
+    @media (max-width: 768px) {
+      display: block;
+    }
   }
   & .icon {
     color: #264270;
     /* height: 20px; */
     font-size: 24px;
+    @media (min-width: 768px) and (max-width: 1024px) {
+      font-size: 18px;
+    }
   }
 `;
 
@@ -45,6 +95,11 @@ const HeaderItemRight = styled.div`
     width: 38px;
     border-radius: 50%;
     margin-left: 8px;
+    @media (min-width: 768px) and (max-width: 1024px) {
+      height: 24px;
+      width: 24px;
+      /* gap: 16px; */
+    }
   }
   & .user {
     display: flex;
@@ -75,7 +130,7 @@ const Header = () => {
             </a>
           </div>
 
-          <NavLink>
+          <NavLink className="leftNavlink">
             <a href="/">求人検索</a>
 
             <a href="/">エントリー</a>
@@ -91,6 +146,11 @@ const Header = () => {
           <NavLink>
             <a href="/">
               <span>
+                <SearchOutlined className="icon mobileEnable" />
+              </span>
+            </a>
+            <a href="/" className=" mobileDisable">
+              <span>
                 <HeartFilled className="icon" />
               </span>
             </a>
@@ -102,7 +162,12 @@ const Header = () => {
                 </span>
               </Badge>
             </a>
-            <div className="user">
+            <a href="/">
+              <span>
+                <MenuOutlined className="icon mobileEnable" />
+              </span>
+            </a>
+            <div className="user mobileDisable">
               <div className="goldmedal">
                 <a href="/">山田 太郎</a>
                 <div className="userinfo">

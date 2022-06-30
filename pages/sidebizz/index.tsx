@@ -21,8 +21,8 @@ const Sidebizz = () => {
           <Header />
         </MainHeader>
         {/* maincontent */}
-        <Frame />
-        <Footer />
+        {/* <Frame />
+        <Footer /> */}
       </Container>
     </>
   );
