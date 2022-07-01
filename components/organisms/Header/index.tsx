@@ -1,13 +1,15 @@
 import {
   HeartFilled,
+  LeftOutlined,
   MenuOutlined,
   MessageFilled,
   SearchOutlined,
 } from "@ant-design/icons";
-import { Badge } from "antd";
+import { Badge, Drawer, Input, Modal } from "antd";
 import { styled } from "linaria/lib/react";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { Findjoblisting } from "../../molecules";
 
 const HeaderItem = styled.div`
   padding: 24px 154px;
@@ -120,6 +122,24 @@ const HeaderItemRight = styled.div`
 `;
 
 const Header = () => {
+  const [visible, setVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showDrawer = () => {
+    setVisible(true);
+  };
+  const onClose = () => {
+    setVisible(false);
+  };
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <>
       <HeaderItem>
@@ -144,11 +164,20 @@ const Header = () => {
         </HeaderItemLeft>
         <HeaderItemRight>
           <NavLink>
-            <a href="/">
-              <span>
-                <SearchOutlined className="icon mobileEnable" />
-              </span>
-            </a>
+            <div>
+              <SearchOutlined
+                className="icon mobileEnable"
+                onClick={showModal}
+              />
+              <Modal
+                title="Search"
+                visible={isModalVisible}
+                onOk={handleOk}
+                onCancel={handleCancel}
+              >
+                <Input placeholder="Search" />
+              </Modal>
+            </div>
             <a href="/" className=" mobileDisable">
               <span>
                 <HeartFilled className="icon" />
@@ -162,11 +191,22 @@ const Header = () => {
                 </span>
               </Badge>
             </a>
-            <a href="/">
+            <div>
               <span>
-                <MenuOutlined className="icon mobileEnable" />
+                <MenuOutlined
+                  className="icon mobileEnable"
+                  onClick={showDrawer}
+                />
+                <Drawer
+                  title="Find Job Listing"
+                  placement="right"
+                  onClose={onClose}
+                  visible={visible}
+                >
+                  <Findjoblisting />
+                </Drawer>
               </span>
-            </a>
+            </div>
             <div className="user mobileDisable">
               <div className="goldmedal">
                 <a href="/">山田 太郎</a>
