@@ -2,6 +2,9 @@ import { styled } from "linaria/lib/react";
 import React from "react";
 import { Footer, Frame, Header } from "../../components";
 const Container = styled.div`
+  /* max-width: 1440px; */
+  display: flex;
+  flex-direction: column;
   background-color: #f4f4f4;
   /* height: 100%; */
 `;
@@ -21,8 +24,8 @@ const Sidebizz = () => {
           <Header />
         </MainHeader>
         {/* maincontent */}
-        {/* <Frame />
-        <Footer /> */}
+        <Frame />
+        {/* <Footer /> */}
       </Container>
     </>
   );

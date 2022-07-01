@@ -1,4 +1,5 @@
 import { RightOutlined } from "@ant-design/icons";
+import { Button } from "antd";
 import { styled } from "linaria/lib/react";
 import React from "react";
 import { Card } from "../../atoms";
@@ -7,14 +8,40 @@ const Container = styled.div`
   background-color: #ffffff;
   width: 776px;
   padding: 16px;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+
   & .cards {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
+  }
+  & .seeMore {
+    width: 90%;
+    margin: 16px;
+    border: 1px solid #1a50ae;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1a50ae;
+    &:hover {
+      background-color: #1a50ae;
+      color: #ffffff;
+    }
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
 `;
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
+  & .mobileDisable {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
   & h3 {
     margin-bottom: 13px;
     font-size: 16px;
@@ -46,7 +73,7 @@ const FrameCard = ({ title, data }: Props) => {
     <Container>
       <Header>
         <h3> {title}</h3>
-        <div>
+        <div className="mobileDisable">
           <a href="/" className="headerRight">
             もっと見る
             <span className="rightoutlined">
@@ -72,6 +99,7 @@ const FrameCard = ({ title, data }: Props) => {
         ))}
         <></>
       </div>
+      <Button className="seeMore">もっと見る</Button>
     </Container>
   );
 };

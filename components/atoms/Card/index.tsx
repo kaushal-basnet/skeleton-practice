@@ -8,12 +8,20 @@ const Container = styled.div`
   padding: 0px;
   gap: 4px;
   width: 174px;
-  /* height: 281px; */
+  @media (max-width: 375px) {
+    width: 100%;
+  }
 
   & .profileImage {
     position: relative;
+    @media (max-width: 375px) {
+      width: 100%;
+    }
     & img {
       border: 1px solid rgba(0, 0, 0, 0.08);
+      @media (max-width: 375px) {
+        width: 100%;
+      }
     }
     & .favorite {
       height: 32px;
@@ -208,7 +216,6 @@ const Card = ({
           ) : null}
         </Status>
       </Container>
-      <div></div>
     </>
   );
 };

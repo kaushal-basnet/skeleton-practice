@@ -5,6 +5,7 @@ import { CheckboxButton, RadioButton, SelectButton } from "../../atoms";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  
   /* gap: 16px; */
   & h2 {
     font-size: 16px;

@@ -7,18 +7,31 @@ const MainContent = styled.div`
   gap: 24px;
   width: 1000px;
   margin: auto;
+  @media (max-width:1024px) {
+    padding : 0px 20px;
+    width : 100%;
+  }
+    @media (max-width: 768px) {
+padding: 0px;
+  }
 `;
 const LeftContent = styled.div`
   background-color: #ffffff;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
-  width: 200px;
+  min-width: 200px;
   padding: 16px;
   height: fit-content;
+    @media (max-width: 768px) {
+    display: none;
+  }
 `;
 const RightContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+   @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 const Frame = () => {
   const Title = [

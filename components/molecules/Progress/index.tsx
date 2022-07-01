@@ -5,6 +5,12 @@ const Container = styled.div`
   background-color: #ffffff;
   width: 776px;
   padding: 16px;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 const Text = styled.h2`
   margin-bottom: 13px;
