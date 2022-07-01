@@ -11,6 +11,14 @@ const Container = styled.div`
   margin: auto;
   margin-top: 162px;
   flex-direction: column;
+  @media (max-width: 1050px) {
+    width: 100%;
+    padding: 30px;
+  }
+  @media (max-width: 768px) {
+    margin-top: 10px;
+    border-top: 0px;
+  }
   & p {
     font-size: 12px;
     line-height: 14px;
@@ -21,12 +29,20 @@ const Main = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 24px;
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+  }
   & .contents {
     display: flex;
     flex-direction: column;
     gap: 16px;
     border-left: 1px solid #e8e8e8;
-
+    @media (max-width: 768px) {
+      border-bottom: 1px solid #e8e8e8;
+      border-left: 0px;
+    }
     & a {
       padding-left: 16px;
       font-size: 14px;
